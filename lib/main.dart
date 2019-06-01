@@ -48,7 +48,16 @@ class FirstRoute extends StatelessWidget {
   }
 }
 
-class SecondRoute extends StatelessWidget {
+class SecondRoute extends StatefulWidget {
+  @override
+  _SecondRouteState createState() => _SecondRouteState();
+}
+
+class _SecondRouteState extends State<SecondRoute> {
+  final titleController = TextEditingController();
+  final imageController = TextEditingController();
+  final linkController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +70,7 @@ class SecondRoute extends StatelessWidget {
           Row(),
           TextField(
             autofocus: true,
+            controller: titleController,
             decoration: InputDecoration(
                 labelText: "Title",
                 hintText: "Please Enter Title",
@@ -68,6 +78,7 @@ class SecondRoute extends StatelessWidget {
           ),
           TextField(
             autofocus: true,
+            controller: imageController,
             decoration: InputDecoration(
                 labelText: "Image URL",
                 hintText: "Please Enter Image URL",
@@ -75,6 +86,7 @@ class SecondRoute extends StatelessWidget {
           ),
           TextField(
             autofocus: true,
+            controller: linkController,
             decoration: InputDecoration(
                 labelText: "Event Link",
                 hintText: "Please Enter Event Link",
@@ -84,9 +96,9 @@ class SecondRoute extends StatelessWidget {
             child: Text('Save'),
             onPressed: () async {
               await db.collection('events').add({
-                'title': 'Hi Flutter Hackthon',
-                'link': 'http://google.com',
-                'image': 'here is image',
+                'title': titleController.text,
+                'link': linkController.text,
+                'image': imageController.text,
                 'date': new DateTime.now()
               });
               Navigator.push(
