@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Even create'),
     );
   }
 }
@@ -67,11 +68,13 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+      backgroundColor: Colors.blue,
+     
       body: Center(
+        
+        
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
@@ -91,17 +94,41 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+            Row(
+
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
+            TextField(
+            autofocus: true,
+            decoration: InputDecoration(
+                labelText: "Title",
+                hintText: "Please Enter Title",
+                prefixIcon: Icon(Icons.person)
             ),
+          ),
+
+            TextField(
+            autofocus: true,
+            decoration: InputDecoration(
+                labelText: "Image URL",
+                hintText: "Please Enter Image URL",
+                prefixIcon: Icon(Icons.tonality)
+            ),
+          ),
+
+          TextField(
+            autofocus: true,
+            decoration: InputDecoration(
+                labelText: "Event Link",
+                hintText: "Please Enter Event Link",
+                prefixIcon: Icon(Icons.trending_up)
+            ),
+          ),
+         
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: 
+      FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
