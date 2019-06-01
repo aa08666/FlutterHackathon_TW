@@ -127,10 +127,7 @@ class _SecondRouteState extends State<SecondRoute> {
                 'image': imageController.text,
                 'date': new DateTime.now()
               });
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => FirstRoute()),
-              );
+              Navigator.pop(context);
             },
           ),
         ],
