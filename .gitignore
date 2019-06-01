@@ -1,6 +1,6 @@
 # service key file
 google-services.json
-
+GoogleService-Info.plist
 # IDE files
 .classpath
 .project
