@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 Firestore db = Firestore.instance;
 
@@ -80,10 +82,16 @@ class SecondRoute extends StatelessWidget {
           ),
           RaisedButton(
             child: Text('Save'),
-            onPressed: () {
+            onPressed: () async {
+              await db.collection('events').add({
+                'title': 'Hi Flutter Hackthon',
+                'link': 'http://google.com',
+                'image': 'here is image',
+                'date': new DateTime.now()
+              });
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SecondRoute()),
+                MaterialPageRoute(builder: (context) => FirstRoute()),
               );
             },
           ),
