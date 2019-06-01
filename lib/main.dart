@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 Firestore db = Firestore.instance;
 
 void main() {
@@ -28,7 +27,34 @@ class FirstRoute extends StatelessWidget {
       ),
       body: Center(
         child: RaisedButton(
-          child: Text('Open route'),
+          child: StreamBuilder<QuerySnapshot>(
+            stream: Firestore.instance.collection('events').snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasError)
+                return new Text('Error: ${snapshot.error}');
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  return new Text('Loading...');
+                default:
+                  print("Data: ${snapshot.data.documents}");
+                  return new ListView(
+                    children: snapshot.data.documents
+                        .map((DocumentSnapshot document) {
+                      return Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            document['title'],
+                            style: TextStyle(fontSize: 22.0),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  );
+              }
+            },
+          ),
           onPressed: () {
             Navigator.push(
               context,
