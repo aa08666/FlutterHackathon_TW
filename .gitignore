@@ -1,6 +1,11 @@
 # service key file
 google-services.json
 
+# IDE files
+.classpath
+.project
+*.prefs
+
 # Miscellaneous
 *.class
 *.log
