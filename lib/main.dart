@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+Firestore db = Firestore.instance;
+
 void main() {
   runApp(MaterialApp(
     title: 'Navigation Basics',
@@ -13,7 +15,7 @@ class FirstRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('First Route'),
+        title: Text('Event list'),
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.list),
@@ -49,41 +51,44 @@ class SecondRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Second Route"),
+        title: Text("Create event"),
       ),
       body: Center(
-        child: RaisedButton(
+          child: Column(
+        children: <Widget>[
+          Row(),
+          TextField(
+            autofocus: true,
+            decoration: InputDecoration(
+                labelText: "Title",
+                hintText: "Please Enter Title",
+                prefixIcon: Icon(Icons.person)),
+          ),
+          TextField(
+            autofocus: true,
+            decoration: InputDecoration(
+                labelText: "Image URL",
+                hintText: "Please Enter Image URL",
+                prefixIcon: Icon(Icons.tonality)),
+          ),
+          TextField(
+            autofocus: true,
+            decoration: InputDecoration(
+                labelText: "Event Link",
+                hintText: "Please Enter Event Link",
+                prefixIcon: Icon(Icons.trending_up)),
+          ),
+          RaisedButton(
+            child: Text('Save'),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SecondRoute()),
+              );
             },
-            child: Column(
-              children: <Widget>[
-                Row(),
-                TextField(
-                  autofocus: true,
-                  decoration: InputDecoration(
-                      labelText: "Title",
-                      hintText: "Please Enter Title",
-                      prefixIcon: Icon(Icons.person)),
-                ),
-                TextField(
-                  autofocus: true,
-                  decoration: InputDecoration(
-                      labelText: "Image URL",
-                      hintText: "Please Enter Image URL",
-                      prefixIcon: Icon(Icons.tonality)),
-                ),
-                TextField(
-                  autofocus: true,
-                  decoration: InputDecoration(
-                      labelText: "Event Link",
-                      hintText: "Please Enter Event Link",
-                      prefixIcon: Icon(Icons.trending_up)),
-                ),
-              ],
-            ),
-        )
-      ),
+          ),
+        ],
+      )),
     );
   }
 }
